@@ -1,9 +1,9 @@
 const express = require("express");
 const { register, login, verify } = require("../controllers/auth");
-const appRouter = express.Router();
+const authRouter = express.Router();
 
-appRouter.post("/auth/signup", (req, res) => register(req, res));
-appRouter.post("/auth/signin", (req, res) => login(req, res));
-appRouter.get("/auth/verify", (req, res) => verify(req, res));
+authRouter.post("/api/auth/signup", (req, res) => register(req, res));
+authRouter.post("/api/auth/signin", (req, res) => login(req, res));
+authRouter.get("/api/auth/verify", (req, res) => verify(req, res));
 
-module.exports = appRouter;
+module.exports = authRouter;

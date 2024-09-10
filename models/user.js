@@ -23,6 +23,11 @@ const userSchema = new Schema(
             type: String,
             default: "client",
         },
+        status: {
+            type: String,
+            enum: ["Pending", "Blocked", "Active"],
+            default: "Pending",
+        },
     },
     { timestamps: true }
 );
