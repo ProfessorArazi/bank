@@ -42,9 +42,7 @@ const login = async (req, res) => {
     }
 
     const token = generateToken(user);
-    setCookie(res, token);
-
-    return res.status(200).send({ message: "success" });
+    return res.status(200).send({ token });
 };
 
 const verify = async (req, res) => {
@@ -70,13 +68,6 @@ const hashPassword = async (password) => {
 const generateToken = (user) => {
     const data = { email: user.email, id: user.id, role: user.role };
     return jwt.sign(data, process.env.JWT_KEY, { expiresIn: "3h" });
-};
-
-const setCookie = (res, token) => {
-    res.cookie("Authorization", token, {
-        httpOnly: true,
-        maxAge: 60 * 180 * 1000,
-    });
 };
 
 module.exports = { register, login, verify };
